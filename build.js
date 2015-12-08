@@ -5,3 +5,4 @@ git tag -a v1.0.0 -m "Multiple Date Picker X"
 git push origin v1.0.0
 bower cache clean
 bower info multiple-date-picker-x
+bower register multiple-date-picker-x git://github.com/Xal3ph/MultipleDatePickerX.git

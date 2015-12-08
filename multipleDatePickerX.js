@@ -1,15 +1,15 @@
 /*
- @author : Maelig GOHIN For ARCA-Computing - www.arca-computing.fr
+ @author : Xal3ph
  @date: July 2014
- @version: 1.3.5
+ @version: 1.0.0
 
- @description:  multipleDatePicker is an Angular directive to show a simple calendar allowing user to select multiple dates.
+ @description:  multipleDatePickerX is an Angular directive to show a simple calendar allowing user to select multiple dates.
  Css style can be changed by editing less or css stylesheet.
  See scope declaration below for options you can pass through html directive.
  Feel free to edit and share this piece of code, our idea is to keep it simple ;)
  */
-angular.module('multipleDatePicker', [])
-    .factory('multipleDatePickerBroadcast', ['$rootScope', function ($rootScope) {
+angular.module('multipleDatePickerX', [])
+    .factory('multipleDatePickerXBroadcast', ['$rootScope', function ($rootScope) {
         var sharedService = {};
 
         sharedService.calendarId = null;
@@ -22,12 +22,12 @@ angular.module('multipleDatePicker', [])
         };
 
         sharedService.broadcastItem = function () {
-            $rootScope.$broadcast('handlemultipleDatePickerBroadcast');
+            $rootScope.$broadcast('handlemultipleDatePickerXBroadcast');
         };
 
         return sharedService;
     }])
-    .directive('multipleDatePicker', ['$log', 'multipleDatePickerBroadcast', function ($log, multipleDatePickerBroadcast) {
+    .directive('multipleDatePickerX', ['$log', 'multipleDatePickerXBroadcast', function ($log, multipleDatePickerXBroadcast) {
         "use strict";
         return {
             restrict: 'AE',
