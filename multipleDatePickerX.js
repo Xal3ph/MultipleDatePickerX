@@ -1,7 +1,7 @@
 /*
  @author : Xal3ph
  @date: July 2014
- @version: 1.0.0
+ @version: 1.3.5
 
  @description:  multipleDatePickerX is an Angular directive to show a simple calendar allowing user to select multiple dates.
  Css style can be changed by editing less or css stylesheet.
@@ -80,7 +80,7 @@ angular.module('multipleDatePickerX', [])
                  * Type: array of objects cf doc
                  * Days highlights
                  * */
-                highlightMonths: '=?',
+                highlightDates: '=?',
                 /*
                  * Type: boolean
                  * Set all months off
@@ -112,7 +112,7 @@ angular.module('multipleDatePickerX', [])
                  * */
                 selectionMode: '=?'
             },
-            templateUrl: 'multiple-date-picker-template.html',
+            templateUrl: 'bower_components/multiple-date-picker-x/multiple-date-picker-template.html',
             link: function (scope, element, attr) {
 
                 /*utility functions*/
@@ -155,12 +155,12 @@ angular.module('multipleDatePickerX', [])
 
                 scope.$watch('datesOff', function (value) {
                     if (value !== undefined) {
-                        $log.warn('datesOff option deprecated since version 1.1.6, please use highlightMonths');
+                        $log.warn('datesOff option deprecated since version 1.1.6, please use highlightDates');
                     }
                     scope.generate();
                 }, true);
 
-                scope.$watch('highlightMonths', function () {
+                scope.$watch('highlightDates', function () {
                     scope.generate();
                 }, true);
 
@@ -326,7 +326,7 @@ angular.module('multipleDatePickerX', [])
                         (angular.isArray(scope.datesOff) && scope.datesOff.some(function (dayOff) {
                             return date.isSame(dayOff, scope.modeDate);
                         })) ||
-                        (angular.isArray(scope.highlightMonths) && scope.highlightMonths.some(function (highlightDay) {
+                        (angular.isArray(scope.highlightDates) && scope.highlightDates.some(function (highlightDay) {
                             return date.isSame(highlightDay.date, scope.modeDate) && !highlightDay.selectable;
                         }));
                 };
@@ -355,7 +355,6 @@ angular.module('multipleDatePickerX', [])
                         else {
                             var days = new Date(scope.calendars[c].get('year'), (scope.calendars[c].get('month')+1), 0).getDate();
                             for(var d = 0; d < days; ++d){
-                                console.log(scope.calendars[c].get('year')+'-'+(scope.calendars[c].get('month')+1)+'-'+(d+1));
                                 nodes[d] = moment(scope.calendars[c].get('year')+'-'+(scope.calendars[c].get('month')+1)+'-'+(d+1), 'YYYY-MM-D');
                             }
                         }
@@ -366,8 +365,8 @@ angular.module('multipleDatePickerX', [])
                                 date = moment('1 ' + nodes[l]+' '+scope.calendars[c].year());
                             }
 
-                            if(angular.isArray(scope.highlightMonths)){
-                                var hlDay = scope.highlightMonths.filter(highlightDateFilter);
+                            if(angular.isArray(scope.highlightDates)){
+                                var hlDay = scope.highlightDates.filter(highlightDateFilter);
                                 date.css = hlDay.length > 0 ? hlDay[0].css : '';
                                 date.title = hlDay.length > 0 ? hlDay[0].title : '';
                             }
