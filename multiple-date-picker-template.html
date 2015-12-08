@@ -1,0 +1,39 @@
+<div class="multiple-date-picker">
+	<div ng-click="previous()"
+		ng-if="!hideButtons && count>1"
+		style="height: 100%; left: -15px; position: absolute; cursor: pointer; z-index: 9; border: 0;">
+		<i style="top: 40%; position: relative;" class="">&lt;</i>
+	</div>
+	<div ng-click="next()"
+		ng-if="!hideButtons && count>1"
+		style="height: 100%; right: -15px; position: absolute; cursor: pointer; z-index: 9; border: 0;">
+		<i style="top: 40%; position: relative;" class="">&gt;</i>
+	</div>
+	<div class="multiple-date-picker-group">
+		<div class="multiple-date-picker-node" ng-repeat="(c, calendar) in calendars" style="float: left; width: {{Math.floor(100/Math.min(count,countRowMax))}}%;">
+			<div class="multiple-date-picker-calendar">
+				<div class="picker-top-row">
+					<div class="text-center picker-navigate picker-navigate-left-arrow"
+						style="left: -15px; position: absolute; cursor: pointer; z-index: 9; border: 0;"
+						ng-class="{'disabled':disableBackButton}" 
+						ng-click="previous()"
+						ng-if="!hideButtons && count==1">&lt;</div>
+					<div class="text-center picker-navigate picker-navigate-right-arrow"
+						style="right: -15px; position: absolute; cursor: pointer; z-index: 9; border: 0;"
+						ng-class="{'disabled':disableNextButton}"
+						ng-click="next()" 
+						ng-if="!hideButtons && count==1">&gt;</div>
+					<div class="text-center picker-month" style="width: 100%">{{calendar.format(topRowDateFormat)}}</div>
+				</div>
+
+	            <div class="picker-days-week-row" ng-if="(mode=='month')">
+	            	<div class="text-center" ng-repeat="day in daysOfWeek">{{day}}</div>
+	            </div>
+
+				<div ng-class="{'picker-months-row':(mode=='year'), 'picker-days-row':(mode=='month')}">
+					<div class="text-center picker-date picker-month {{date.css}}" title="{{date.title}}" ng-repeat="date in months[c]" ng-click="toggleDay($event, date)" ng-mouseover="hoverDay($event, date)" ng-mouseleave="monthHover($event, date)" ng-class="{'picker-selected':date.selected, 'picker-off':!date.selectable, 'today':date.today, 'picker-between':date.between}">{{date ? date.format(dateFormat) : ''}}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

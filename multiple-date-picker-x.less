@@ -1,0 +1,150 @@
+@border-color: #eee;
+
+@empty-date-background: #fafafa;
+
+@picker-date-today: #00a3ff;
+
+@non-pickable-date-background: #eee;
+@non-pickable-date-color: #bbb;
+
+@pickable-date-non-picked-background: #fff;
+@pickable-date-non-picked-color: #000;
+
+@pickable-date-picked-background: #C6000B;
+@pickable-date-picked-color: #fff;
+
+.text-center {
+  text-align: center;
+}
+
+.multiple-date-picker {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: relative;
+}
+.multiple-date-picker-calendar{
+  padding: 15px;
+}
+
+.multiple-date-picker-node{
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.multiple-date-picker-group:before, .multiple-date-picker-group:after {
+  display: table;
+  content: " ";
+}
+
+.multiple-date-picker-group:after{
+  clear: both;
+}
+.multiple-date-picker-node {
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+  float: left;
+}
+
+.multiple-date-picker-node, .picker-top-row {
+  width: 100%;
+}
+
+.picker-top-row > div {
+  display: inline-block;
+}
+
+.picker-navigate {
+  width: 16%;
+  float:left;
+}
+
+.picker-navigate:hover {
+  cursor: pointer;
+}
+
+.picker-navigate.disabled, .picker-navigate.disabled:hover {
+  color: #ddd;
+  cursor: default;
+}
+
+.picker-month {
+  width: 66%;
+  float: left;
+}
+
+.picker-months-row, .picker-days-week-row {
+  padding:5px;
+}
+
+.picker-months-row > div {
+  width: 25%;
+  display: inline-block;
+}
+
+.picker-days-week-row > div {
+  width: 14.28%;
+  display: inline-block;
+}
+
+.picker-days-row > div {
+  width: 14.28%;
+  display: inline-block;
+}
+
+.picker-days-row > div {
+  width: 14.28%;
+  display: inline-block;
+}
+
+
+.picker-top-row:before, .picker-top-row:after {
+  display: table;
+  content: " ";
+}
+
+.picker-top-row:after{
+  clear: both;
+}
+
+.picker-top-row, .picker-date {
+  padding: 10px 0;
+}
+
+.picker-date{
+  background-color: @pickable-date-non-picked-background;
+  border: 1px solid @border-color;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  color:@pickable-date-non-picked-color;
+}
+
+.picker-date.today, .picker-date.today:hover, .picker-date.today.picker-selected, .picker-date.today.picker-off, .picker-date.today.picker-off:hover{
+  color: @picker-date-today;
+  font-weight: bold;
+}
+
+.picker-date:not(.picker-off):not(.picker-empty):hover {
+  background-color: @pickable-date-picked-background;
+  color: @pickable-date-picked-color;
+  cursor: pointer;
+}
+
+.picker-date.picker-selected{
+  background-color: @pickable-date-picked-background;
+  color: @pickable-date-picked-color;
+}
+
+.picker-date.picker-off, .picker-date.picker-off:hover{
+  background-color: @non-pickable-date-background;
+  color: @non-pickable-date-color;
+  cursor: default;
+}
+
+.picker-date.picker-empty, .picker-date.picker-empty:hover{
+  background-color: @empty-date-background;
+  cursor: default;
+}
