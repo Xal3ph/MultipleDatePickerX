@@ -1,4 +1,4 @@
-Copyright (c) 2015 ARCA COMPUTING
+Copyright (c) 2015 Xaleph (Matthew Sabol) derivative of ARCA COMPUTING
 
 
 
