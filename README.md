@@ -1,6 +1,6 @@
 #What's new ?
 
-###Version 1.0.3 (MonthPicker)
+###Version 1.0.3
 Added 'mode' and 'count'.
 
 #What is MultipleDatePickerX ?
