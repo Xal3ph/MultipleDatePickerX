@@ -111,7 +111,7 @@ angular.module('multipleDatePickerX', [])
                  * */
                 selectionMode: '=?'
             },
-            templateUrl: 'bower_components/multiple-date-picker-x/multiple-date-picker-template.html',
+            templateUrl: 'template/multiple-date-picker-template.html',
             link: function (scope, element, attr) {
 
                 /*utility functions*/
