@@ -1,7 +1,7 @@
 /*
  @author : Xal3ph
  @date: December 2015
- @version: 1.0.1
+ @version: 1.0.3
 
  @description:  multipleDatePickerX is an based on the Angular directive "multipleDatePicker" to show a simple calendar allowing user to select multiple dates.
  It's more complicated than the simple version.  It allows for multiple calendars, different calendar modes, it requires more advanced libraries (qtip) and does
@@ -109,7 +109,17 @@ angular.module('multipleDatePickerX', [])
                  * Type: string
                  * Either 'unit' (default) or 'range'
                  * */
-                selectionMode: '=?'
+                selectionMode: '=?',
+                /*
+                 * Type: any type moment can parse
+                 * If filled will disable all days before this one (not included)
+                 * */
+                disableDaysBefore: '=?',
+                /*
+                 * Type: any type moment can parse
+                 * If filled will disable all days after this one (not included)
+                 * */
+                disableDaysAfter: '=?'
             },
             templateUrl: 'template/multiple-date-picker-template.html',
             link: function (scope, element, attr) {
@@ -322,6 +332,8 @@ angular.module('multipleDatePickerX', [])
                 /*Check if the date is off : unselectable*/
                 scope.isDayOff = function (scope, date) {
                     return scope.allDatesOff ||
+                        (!!scope.disableDaysBefore && moment(date).isBefore(scope.disableDaysBefore, 'day')) ||
+                        (!!scope.disableDaysAfter && moment(date).isAfter(scope.disableDaysAfter, 'day')) ||
                         (angular.isArray(scope.datesOff) && scope.datesOff.some(function (dayOff) {
                             return date.isSame(dayOff, scope.modeDate);
                         })) ||
@@ -341,7 +353,11 @@ angular.module('multipleDatePickerX', [])
                 scope.generate = function () {
                     var now = moment(),
                         highlightDateFilter = function(d){
-                            return date.isSame(d.date, scope.modeDate);
+                            return (d.date && date.isSame(d.date, scope.modeDate)) ||
+                              (!d.to && d.from && (date.isAfter(d.from, scope.modeDate) || date.isSame(d.from, scope.modeDate))) ||
+                              (!d.from && d.to && date.isBefore(d.to, scope.modeDate) || date.isSame(d.to, scope.modeDate)) || 
+                              (d.from && (date.isAfter(d.from, scope.modeDate) || date.isSame(d.from, scope.modeDate)) && 
+                                d.to && (date.isBefore(d.to, scope.modeDate) || date.isSame(d.from, scope.modeDate)));
                         };
 
                     for (var c = 0; c < scope.calendars.length; ++c){
@@ -365,9 +381,14 @@ angular.module('multipleDatePickerX', [])
                             }
 
                             if(angular.isArray(scope.highlightDates)){
-                                var hlDay = scope.highlightDates.filter(highlightDateFilter);
-                                date.css = hlDay.length > 0 ? hlDay[0].css : '';
-                                date.title = hlDay.length > 0 ? hlDay[0].title : '';
+                                var hlDay;
+                                if((hlDay = scope.highlightDates.filter(highlightDateFilter)[0])){
+                                  for(var key in hlDay){
+                                    if(key!= 'date'){
+                                      date[key] = hlDay[key];
+                                    }
+                                  }
+                                }
                             }
                             date.selectable = !scope.isDayOff(scope, date);
                             date.selected = scope.isSelected(scope, date);

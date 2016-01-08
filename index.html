@@ -5,6 +5,7 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
@@ -15,8 +16,8 @@
     <script type="text/javascript" src="javascripts/angular.min.js"></script>
     <script type="text/javascript" src="javascripts/lodash.min.js"></script>
     <script type="text/javascript" src="javascripts/moment.min.js"></script>
-<!--    <script type="text/javascript" src="javascripts/multipleMonthPicker.min.js"></script>-->
-    <script type="text/javascript" src="dist/multipleDatePickerX.min.js"></script>
+    <script type="text/javascript" src="multipleDatePickerX.js"></script>
+<!--    <script type="text/javascript" src="dist/multipleDatePickerX.min.js"></script>-->
     <script type="text/javascript" src="javascripts/app.js"></script>
     <title>MultipleDatePickerX by Xal3ph from (arca-computing)</title>
     <style>
@@ -75,7 +76,7 @@
                 dates, a callback is called, you can specify some off days or already selected days.</p>
 
             <h2><a class="anchor"><span class="octicon octicon-link"></span></a>Get it bower style</h2>
-            <pre><code>bower install multiple-date-picker</code></pre>
+            <pre><code>bower install multiple-date-picker-x</code></pre>
 
             <h2><a class="anchor"><span class="octicon octicon-link"></span></a>Get it git style</h2>
             <pre><code>git clone https://github.com/arca-computing/MultipleMonthPicker.git</code></pre>
@@ -89,7 +90,7 @@
                 to auto include dependencies in your html file. If you want to include files manually, add those two :
             </p>
           <pre><code>&lt;script type="text/javascript" src="multipleMonthPicker.min.js"&gt;&lt;/script&gt;
-              &lt;link rel="stylesheet" type="text/css" href="multiple-date-picker.css"/&gt;</code></pre>
+              &lt;link rel="stylesheet" type="text/css" href="multiple-date-picker-x.css"/&gt;</code></pre>
 
             <h3><a class="anchor"><span class="octicon octicon-link"></span></a>Add it to your angular app</h3>
             <pre><code>var app = angular.module('myApp', ['multipleMonthPicker']);</code></pre>
@@ -97,20 +98,20 @@
             <h3><a class="anchor"><span class="octicon octicon-link"></span></a>Add it in your html</h3>
 
           <pre><code>&lt;div&gt;
-  &lt;multiple-date-picker/&gt;
+  &lt;multiple-date-picker-x/&gt;
 &lt;/div&gt;</code></pre>
             <div>
-                <multiple-date-picker mode="mode"/>
+                <multiple-date-picker-x mode="mode"/>
             </div>
             <br>
 
             <p>It will use the max width of it's parent, so If you want to reduce it specify a width (or use
                 Bootstrap/Foundation).</p>
           <pre><code>&lt;div style="width:50%"&gt;
-  &lt;multiple-date-picker/&gt;
+  &lt;multiple-date-picker-x/&gt;
 &lt;/div&gt;</code></pre>
             <div style="width:50%">
-                <multiple-date-picker mode="mode"/>
+                <multiple-date-picker-x mode="mode"/>
             </div>
         </section>
         <hr>
@@ -125,7 +126,7 @@
             is a day at midnight</strong>.</p>
 
         <p>This exemple shows how to pass a scope function that will prompt an alert with infos.</p>
-        <pre><code>&lt;multiple-date-picker month-click="logInfos"/&gt;</code></pre>
+        <pre><code>&lt;multiple-date-picker-x month-click="logInfos"/&gt;</code></pre>
         <p>The <code>logInfos</code> function will be called with a preventable event and the moment object:</p>
         <pre><code>$scope.logInfos = function(event, date) {
     event.preventDefault() // prevent the select to happen
@@ -134,11 +135,11 @@
     date.selected = !date.selected
 }</code></pre>
         <div>
-            <multiple-date-picker mode="mode" month-click="doDate"/>
+            <multiple-date-picker-x mode="mode" month-click="doDate"/>
         </div>
         <hr>
         <h4><a class="anchor"><span class="octicon octicon-link"></span></a>Hover callback</h4>
-        <pre><code>&lt;multiple-date-picker month-hover="logInfos"/&gt;</code></pre>
+        <pre><code>&lt;multiple-date-picker-x month-hover="logInfos"/&gt;</code></pre>
         <p>Same options as before</p>
         <pre><code>$scope.logInfos = function(event, date) {
     event.preventDefault() // prevent the date.hover to be toggled
@@ -148,7 +149,7 @@
     }
 }</code></pre>
         <div>
-            <multiple-date-picker mode="mode" month-hover="doDate"/>
+            <multiple-date-picker-x mode="mode" month-hover="doDate"/>
         </div>
         <small>This will be showed to the web console</small>
         <hr>
@@ -159,26 +160,26 @@
             newMonth and oldMonth given to the callback is first day of month at midnight</strong>.</p>
 
         <p>This exemple shows how to pass a scope function that will prompt an alert with infos.</p>
-        <pre><code>&lt;multiple-date-picker year-changed="logMonthChanged"/&gt;</code></pre>
+        <pre><code>&lt;multiple-date-picker-x year-changed="logMonthChanged"/&gt;</code></pre>
         
         <pre><code>$scope.logMonthChanged = function(newMonth, oldMonth){
     alert('new month : ' + newMonth.format('YYYY-M-DD') + ' || old month : ' + oldMonth.format('YYYY-M-DD'));
 };</code></pre>
         <div>
-            <multiple-date-picker mode="mode" year-changed="logMonthChanged"/>
+            <multiple-date-picker-x mode="mode" year-changed="logMonthChanged"/>
         </div>
         <hr>
 
         <h4><a class="anchor"><span class="octicon octicon-link"></span></a>All Days-off</h4>
 
         <p>Disable all dates in the calendar, default is false</p>
-        <pre><code>&lt;multiple-date-picker all-months-off="true"/&gt;</code></pre>
+        <pre><code>&lt;multiple-date-picker-x all-months-off="true"/&gt;</code></pre>
         <div>
-            <multiple-date-picker mode="mode" all-months-off="true"/>
+            <multiple-date-picker-x mode="mode" all-months-off="true"/>
         </div>
         <hr>
 
-        <h4><a class="anchor"><span class="octicon octicon-link"></span></a>Highlight-days</h4>
+        <h4><a class="anchor"><span class="octicon octicon-link"></span></a>Highlight-dates</h4>
         <p>This is an array containing dates you want to highlight, I can be a day-off like a bank day, holiday, your birthday, anything you want.</p>
         <pre><code>{
     date: Timestamp/String/Moment, //anything usable with moment
@@ -187,12 +188,12 @@
     title: String //will be use in title attribute (show when cursor is hover)
 }</code></pre>
         <p>The live demo represent the 2nd of month as holiday (not clickable), 14h a day off (not clickable) and the 25th is my birthday (not really, and clickable).</p>
-        <pre><code>$scope.highlightDays = [
+        <pre><code>$scope.highlightDates = [
     {date: moment().date(2).valueOf(), css: 'holiday', selectable: false,title: 'Holiday time !'},
     {date: moment().date(14).valueOf(), css: 'off', selectable: false,title: 'We don\'t work today'},
     {date: moment().date(25).valueOf(), css: 'birthday', selectable: true,title: 'I\'m thir... i\'m 28, seriously, I mean ...'}
 ];</code></pre>
-        <pre><code>&lt;multiple-date-picker highlight-months="highlightDays"/&gt;</code></pre>
+        <pre><code>&lt;multiple-date-picker-x highlight-dates="highlightDates"/&gt;</code></pre>
         <p>And here the css used for this demo</p>
         <pre><code>/*apply colors if not selected, if selected I want the default selected css*/
 .picker-day.holiday:not(.picker-selected){
@@ -213,33 +214,33 @@
     color: #000;
 }</code></pre>
         <div>
-            <multiple-date-picker mode="mode" highlight-months="highlightDays"/>
+            <multiple-date-picker-x mode="mode" highlight-dates="highlightDates"/>
         </div>
         <hr>
 
 
         <h4><a class="anchor"><span class="octicon octicon-link"></span></a>Days-off</h4>
 
-        <p class="warning">Option "months-off" is deprecated since 1.2, please use "highlight-months" instead</p>
+        <p class="warning">Option "months-off" is deprecated since 1.2, please use "highlight-dates" instead</p>
 
         <p>Those dates are not selectable (like bank days). It's an array of milliseconds timestamps.</p>
-        <pre><code>&lt;multiple-date-picker months-off="[1404770400000, 1405029600000]"/&gt;</code></pre>
+        <pre><code>&lt;multiple-date-picker-x months-off="[1404770400000, 1405029600000]"/&gt;</code></pre>
         <p>The live demo represent the 14h day off this month with this code sample. oneDayOff is a scope variable.</p>
-        <pre><code>&lt;multiple-date-picker months-off="oneDayOff"/&gt;</code></pre>
+        <pre><code>&lt;multiple-date-picker-x months-off="oneDayOff"/&gt;</code></pre>
         <div>
-            <multiple-date-picker mode="mode" months-off="oneDayOff"/>
+            <multiple-date-picker-x mode="mode" months-off="oneDayOff"/>
         </div>
         <hr>
 
         <h4><a class="anchor"><span class="octicon octicon-link"></span></a>Days-selected</h4>
 
         <p>Those are pre-selected dates when building the calendar. It's an array of milliseconds timestamps.</p>
-        <pre><code>&lt;multiple-date-picker months-selected="[1404770400000, 1405029600000]"/&gt;</code></pre>
+        <pre><code>&lt;multiple-date-picker-x months-selected="[1404770400000, 1405029600000]"/&gt;</code></pre>
         <p>The live demo reprensent the 4th, 5th and 8th day this month with this code sample. selectedDays is a scope
             variable.</p>
-        <pre><code>&lt;multiple-date-picker months-off="selectedDays"/&gt;</code></pre>
+        <pre><code>&lt;multiple-date-picker-x months-off="selectedDays"/&gt;</code></pre>
         <div>
-            <multiple-date-picker mode="mode" months-selected="selectedDays"/>
+            <multiple-date-picker-x mode="mode" months-selected="selectedDays"/>
         </div>
         <hr>
 
@@ -247,9 +248,9 @@
 
         <p>If true the back button to go previous month will be disabled if you are on today's month, so you can't go in
             past month</p>
-        <pre><code>&lt;multiple-date-picker disallow-back-past-years="true"/&gt;</code></pre>
+        <pre><code>&lt;multiple-date-picker-x disallow-back-past-years="true"/&gt;</code></pre>
         <div>
-            <multiple-date-picker mode="mode" disallow-back-past-years="true"/>
+            <multiple-date-picker-x mode="mode" disallow-back-past-years="true"/>
         </div>
         <hr>
 
@@ -257,39 +258,39 @@
 
         <p>If true the back button to go next month will be disabled if you are on today's month, so you can't go the
             futur</p>
-        <pre><code>&lt;multiple-date-picker disallow-go-futur-years="true"/&gt;</code></pre>
+        <pre><code>&lt;multiple-date-picker-x disallow-go-futur-years="true"/&gt;</code></pre>
         <div>
-            <multiple-date-picker mode="mode" disallow-go-futur-years="true"/>
+            <multiple-date-picker-x mode="mode" disallow-go-futur-years="true"/>
         </div>
         <hr>
 
         <h4><a class="anchor"><span class="octicon octicon-link"></span></a>hide-buttons</h4>
 
         <p>If true, all buttons (forward backward) are hidden.</p>
-        <pre><code>&lt;multiple-date-picker hide-buttons="true"/&gt;</code></pre>
+        <pre><code>&lt;multiple-date-picker-x hide-buttons="true"/&gt;</code></pre>
         <div>
-            <multiple-date-picker mode="mode" hide-buttons="true"/>
+            <multiple-date-picker-x mode="mode" hide-buttons="true"/>
         </div>
         <hr>
 
         <h4><a class="anchor"><span class="octicon octicon-link"></span></a>count</h4>
 
         <p>Add number of count to show multiple calendars.</p>
-        <pre><code>&lt;multiple-date-picker count="6"/&gt;</code></pre>
+        <pre><code>&lt;multiple-date-picker-x count="6"/&gt;</code></pre>
         <div>
-            <multiple-date-picker mode="mode" count="6"/>
+            <multiple-date-picker-x mode="mode" count="6"/>
         </div>
         <hr>
 
         <h4><a class="anchor"><span class="octicon octicon-link"></span></a>Let's get serious</h4>
 
         <p>You can (of course) use all options at the same time.</p>
-        <pre><code>&lt;multiple-date-picker
+        <pre><code>&lt;multiple-date-picker-x
             months-off="oneDayOff"
             months-selected="selectedDays"
             month-click="logInfos"/&gt;</code></pre>
         <div>
-            <multiple-date-picker mode="mode" months-off="oneDayOff" months-selected="selectedDays" month-click="doDate"/>
+            <multiple-date-picker-x mode="mode" months-off="oneDayOff" months-selected="selectedDays" month-click="doDate"/>
         </div>
         <hr>
 
