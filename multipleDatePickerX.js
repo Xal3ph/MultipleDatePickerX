@@ -119,7 +119,9 @@ angular.module('multipleDatePickerX', [])
                  * Type: any type moment can parse
                  * If filled will disable all days after this one (not included)
                  * */
-                disableDaysAfter: '=?'
+                disableDaysAfter: '=?',
+                leftArrowContent: '=?',
+                rightArrowContent: '=?'
             },
             templateUrl: 'template/multiple-date-picker-template.html',
             link: function (scope, element, attr) {
@@ -214,6 +216,8 @@ angular.module('multipleDatePickerX', [])
                     scope.datesOff = scope.datesOff || [];
                     scope.disableBackButton = false;
                     scope.disableNextButton = false;
+                    scope.rightArrowContent = '>';
+                    scope.leftArrowContent = '<';
 
 
 

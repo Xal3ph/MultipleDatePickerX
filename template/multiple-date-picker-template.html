@@ -2,12 +2,12 @@
 	<div ng-click="previous()"
 		ng-if="!hideButtons && count>1"
 		style="height: 100%; left: -15px; position: absolute; cursor: pointer; z-index: 9; border: 0;">
-		<i style="top: 40%; position: relative;" class="">&lt;</i>
+		<i style="top: 40%; position: relative;" class="">{{leftArrowContent}}</i>
 	</div>
 	<div ng-click="next()"
 		ng-if="!hideButtons && count>1"
 		style="height: 100%; right: -15px; position: absolute; cursor: pointer; z-index: 9; border: 0;">
-		<i style="top: 40%; position: relative;" class="">&gt;</i>
+		<i style="top: 40%; position: relative;" class="">{{rightArrowContent}}</i>
 	</div>
 	<div class="multiple-date-picker-group">
 		<div class="multiple-date-picker-node" ng-repeat="(c, calendar) in calendars" style="float: left; width: {{Math.floor(100/Math.min(count,countRowMax))}}%;">
