@@ -216,8 +216,8 @@ angular.module('multipleDatePickerX', [])
                     scope.datesOff = scope.datesOff || [];
                     scope.disableBackButton = false;
                     scope.disableNextButton = false;
-                    scope.rightArrowContent = '>';
-                    scope.leftArrowContent = '<';
+                    scope.rightArrowContent = scope.rightArrowContent||'>';
+                    scope.leftArrowContent = scope.leftArrowContent||'<';
 
 
 
