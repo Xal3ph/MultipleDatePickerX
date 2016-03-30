@@ -131,6 +131,12 @@
   cursor: pointer;
 }
 
+.picker-date.off-month {
+  color: transparent !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
 .picker-date.picker-selected {
   background-color: #c6000b;
   color: #ffffff;

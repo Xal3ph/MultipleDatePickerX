@@ -1,5 +1,11 @@
 #What's new ?
 
+###Version 1.0.5
+
+* Fixed dates before - will hide dates not in the same month (off-months).
+* Fixed broadcast to work appropriately
+
+
 ###Version 1.0.3
 Added 'mode' and 'count'.
 

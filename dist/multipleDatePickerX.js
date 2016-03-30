@@ -1,7 +1,7 @@
 /*
  @author : Xal3ph
  @date: December 2015
- @version: 1.0.3
+ @version: 1.0.5
 
  @description:  multipleDatePickerX is an based on the Angular directive "multipleDatePicker" to show a simple calendar allowing user to select multiple dates.
  It's more complicated than the simple version.  It allows for multiple calendars, different calendar modes, it requires more advanced libraries (qtip) and does
@@ -21,7 +21,7 @@ angular.module('multipleDatePickerX', [])
         };
 
         sharedService.broadcastItem = function () {
-            $rootScope.$broadcast('handlemultipleDatePickerXBroadcast');
+            $rootScope.$broadcast('handleMultipleDateXPickerBroadcast');
         };
 
         return sharedService;
@@ -150,7 +150,23 @@ angular.module('multipleDatePickerX', [])
                         }
 
                         return days;
+                    },
+                    reset = function () {
+                        var daysSelected = scope.daysSelected || [],
+                            momentDates = [];
+                        daysSelected.map(function (timestamp) {
+                            momentDates.push(moment(timestamp));
+                        });
+                        scope.convertedDaysSelected = momentDates;
+                        scope.generate();
                     };
+
+                /* broadcast functions*/
+                scope.$on('handleMultipleDateXPickerBroadcast', function () {
+                    if (multipleDatePickerXBroadcast.message === 'reset' && (!multipleDatePickerXBroadcast.calendarId || multipleDatePickerXBroadcast.calendarId === scope.calendarId)) {
+                        reset();
+                    }
+                });
 
                 /*scope functions*/
                 scope.$watch('datesSelected', function (newValue) {
@@ -353,6 +369,13 @@ angular.module('multipleDatePickerX', [])
                     });
                 };
 
+                /*Check if the date is selected*/
+                scope.isSameMonth = function (scope, date) {
+                    return scope.convertedDaysSelected.some(function (d) {
+                        return date.isSame(d, scope.modeDate);
+                    });
+                };
+
                 /*Generate the calendar*/
                 scope.generate = function () {
                     var now = moment(),
@@ -383,6 +406,14 @@ angular.module('multipleDatePickerX', [])
                             if(scope.mode == 'year'){
                                 date = moment('1 ' + nodes[l]+' '+scope.calendars[c].year());
                             }
+                            else {
+                              if(l===0){
+                                var nd = 7-moment(date).weekday();
+                                for(var i = 7; i-nd > 0; --i){
+                                  months.push(moment(date).subtract(i-nd,'days'));
+                                }
+                              }
+                            }
 
                             if(angular.isArray(scope.highlightDates)){
                                 var hlDay;
@@ -393,6 +424,12 @@ angular.module('multipleDatePickerX', [])
                                     }
                                   }
                                 }
+                            }
+                            if(scope.mode=='year') {
+                              date.sameMonth = true;
+                            }
+                            else {
+                              date.sameMonth = scope.calendars[c].get('month') == date.get('month');
                             }
                             date.selectable = !scope.isDayOff(scope, date);
                             date.selected = scope.isSelected(scope, date);
