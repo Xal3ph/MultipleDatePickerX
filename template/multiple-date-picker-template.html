@@ -31,7 +31,7 @@
 	            </div>
 
 				<div ng-class="{'picker-months-row':(mode=='year'), 'picker-days-row':(mode=='month')}">
-					<div qtip class="text-center picker-date picker-month {{date.css}}" content="{{date.title}}" title="{{date.title}}" ng-repeat="date in months[c]" ng-click="toggleDay($event, date)" ng-mouseover="hoverDay($event, date)" ng-mouseleave="monthHover($event, date)" ng-class="{'picker-selected':date.selected, 'picker-off':!date.selectable, 'today':date.today, 'picker-between':date.between}">{{date ? date.format(dateFormat) : ''}}</div>
+					<div qtip class="text-center picker-date picker-month {{date.css}}" content="{{date.title}}" title="{{date.title}}" ng-repeat="date in months[c]" ng-click="toggleDay($event, date)" ng-mouseover="hoverDay($event, date)" ng-mouseleave="monthHover($event, date)" ng-class="{'picker-selected':date.selected, 'picker-off':!date.selectable, 'today':date.today, 'picker-between':date.between, 'off-month':!date.sameMonth}">{{date ? date.format(dateFormat) : ''}}</div>
 				</div>
 			</div>
 		</div>
