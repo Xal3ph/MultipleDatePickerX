@@ -1,7 +1,7 @@
 /*
  @author : Xal3ph
  @date: December 2015
- @version: 1.0.5
+ @version: 1.0.6
 
  @description:  multipleDatePickerX is an based on the Angular directive "multipleDatePicker" to show a simple calendar allowing user to select multiple dates.
  It's more complicated than the simple version.  It allows for multiple calendars, different calendar modes, it requires more advanced libraries (qtip) and does
@@ -431,7 +431,8 @@ angular.module('multipleDatePickerX', [])
                             else {
                               date.sameMonth = scope.calendars[c].get('month') == date.get('month');
                             }
-                            date.selectable = !scope.isDayOff(scope, date);
+                            var selectable = ('selectable' in date && typeof date.selectable === 'boolean' && date.selectable) || !('selectable' in date && typeof date.selectable === 'boolean');
+                            date.selectable = selectable && !scope.isDayOff(scope, date);
                             date.selected = scope.isSelected(scope, date);
                             date.today = date.isSame(now, 'day');
                             months.push(date);
